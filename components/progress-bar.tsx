@@ -8,7 +8,7 @@ export function ProgressBar() {
   return (
     <motion.div
       style={{ scaleX }}
-      className="fixed inset-x-0 top-0 z-[60] h-[3px] origin-left bg-gradient-to-r from-avo-deep via-avo to-[#d8ff8a]"
+      className="fixed inset-x-0 top-0 z-[60] h-[2px] origin-left bg-gradient-to-r from-avo-deep via-avo to-[#d8ff8a]"
       aria-hidden="true"
     />
   )

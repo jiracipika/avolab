@@ -14,7 +14,7 @@ export function Arcade() {
       <div className="relative mx-auto max-w-6xl px-6">
         <SectionHead
           eyebrow="The Avolab Arcade"
-          title={<>Don't take our word for it. <span className="text-gradient-avo">Play.</span></>}
+          title={<>Don’t take our word for it. <span className="text-gradient-avo">Play.</span></>}
           copy="DashVerse, our infinite side-scroller, running live below the fold. Desktop: A/D or arrows to move, Space to jump. Touch: tap to jump, swipe down to slide."
         />
 

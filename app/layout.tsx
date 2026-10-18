@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import Script from "next/script"
 import { Inter, Space_Grotesk } from "next/font/google"
+import { MotionProvider } from "@/components/motion-provider"
 import "./globals.css"
 
 const spaceGrotesk = Space_Grotesk({
@@ -62,13 +63,15 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-void text-cream">
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4128325832827761"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
-        {children}
+        <MotionProvider>
+          <Script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4128325832827761"
+            crossOrigin="anonymous"
+            strategy="afterInteractive"
+          />
+          {children}
+        </MotionProvider>
       </body>
     </html>
   )

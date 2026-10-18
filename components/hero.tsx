@@ -49,9 +49,9 @@ export function Hero() {
 
       <motion.div style={{ opacity: reduce ? 1 : fade }} className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-6 pb-16 pt-36 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
+          transition={{ type: "spring", bounce: 0.3, duration: 0.6, delay: 0.15 }}
           className="glass flex items-center gap-2.5 rounded-full border border-line px-4 py-2 text-sm text-mist"
         >
           <span className="animate-pulse-dot h-2 w-2 rounded-full bg-avo" aria-hidden="true" />
@@ -65,9 +65,9 @@ export function Hero() {
         </h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.05 }}
+          transition={{ type: "spring", bounce: 0.28, duration: 0.7, delay: 1.05 }}
           className="mt-7 max-w-2xl text-lg leading-relaxed text-mist"
         >
           We simplify workflows, enhance productivity, and connect you with the
@@ -75,9 +75,9 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.2 }}
+          transition={{ type: "spring", bounce: 0.28, duration: 0.7, delay: 1.2 }}
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <Magnetic>

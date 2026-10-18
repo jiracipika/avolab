@@ -1,13 +1,14 @@
 "use client"
 
 import Image from "next/image"
-import { motion, useMotionTemplate, useMotionValue, useSpring } from "motion/react"
+import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring } from "motion/react"
 import { useRef, type MouseEvent } from "react"
 import { apps, type AppItem } from "@/lib/apps"
 import { Reveal, SectionHead } from "./reveal"
 
 function TiltCard({ app, index }: { app: AppItem; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
+  const reduce = useReducedMotion()
   const rx = useMotionValue(0)
   const ry = useMotionValue(0)
   const srx = useSpring(rx, { stiffness: 200, damping: 20 })
@@ -15,6 +16,7 @@ function TiltCard({ app, index }: { app: AppItem; index: number }) {
   const transform = useMotionTemplate`perspective(900px) rotateX(${srx}deg) rotateY(${sry}deg)`
 
   function onMove(e: MouseEvent<HTMLDivElement>) {
+    if (reduce) return
     const el = ref.current
     if (!el) return
     const r = el.getBoundingClientRect()
@@ -32,7 +34,14 @@ function TiltCard({ app, index }: { app: AppItem; index: number }) {
 
   return (
     <Reveal delay={(index % 3) * 0.07}>
-      <motion.div style={{ transformStyle: "preserve-3d" }} onMouseMove={onMove} onMouseLeave={onLeave}>
+      <motion.div
+        style={{ transformStyle: "preserve-3d" }}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        whileHover={reduce ? undefined : { y: -6 }}
+        whileTap={reduce ? undefined : { scale: 0.985 }}
+        transition={{ type: "spring", stiffness: 300, damping: 22 }}
+      >
         <a
           ref={ref as never}
           href={app.url}

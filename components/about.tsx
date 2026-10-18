@@ -12,14 +12,14 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
 
   useEffect(() => {
     if (!inView) return
-    if (reduce) {
-      setN(to)
-      return
-    }
     const dur = 1400
     const t0 = performance.now()
     let raf = 0
     const tick = (t: number) => {
+      if (reduce) {
+        setN(to)
+        return
+      }
       const p = Math.min(1, (t - t0) / dur)
       const eased = 1 - Math.pow(1 - p, 3)
       setN(Math.round(to * eased))

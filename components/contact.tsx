@@ -11,7 +11,7 @@ function RotatingBadge() {
           <path id="circlePath" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
         </defs>
         <text className="fill-mist text-[10.5px] font-semibold uppercase" style={{ letterSpacing: "0.32em" }}>
-          <textPath href="#circlePath">let's build something · let's build something ·</textPath>
+          <textPath href="#circlePath">let’s build something · let’s build something ·</textPath>
         </text>
       </svg>
       <span className="absolute inset-0 m-auto flex h-11 w-11 items-center justify-center rounded-full bg-avo/15 text-avo">
@@ -43,7 +43,7 @@ export function Contact() {
         </Reveal>
         <Reveal delay={0.16}>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-mist">
-            Let's discuss how we can use automation and AI to help you focus on
+            Let’s discuss how we can use automation and AI to help you focus on
             what really matters.
           </p>
         </Reveal>
