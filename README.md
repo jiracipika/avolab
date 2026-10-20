@@ -28,6 +28,12 @@ Linked to Vercel project `v0-avolab-solutions-website` (domain avolab.ca).
 Pushes to `main` deploy automatically once git integration is connected;
 otherwise `vercel --prod` from this directory.
 
+## Mobile Hub (Android-first preview)
+
+The separate Expo / React Native app lives in `apps/mobile`; it does not replace this website. It includes offline catalogue browsing, favourites, recently opened products, native sharing and the Pulse reaction game. Product destinations open in the system browser.
+
+See [mobile setup and validation](apps/mobile/README.md). Android has a locally built, emulator-tested APK. iOS is not built or tested yet; production signing, Codemagic and both store-testing tracks are not configured.
+
 ## Editing the showcase
 
 All products live in `lib/apps.ts` — add an entry with a `shot` (drop a JPG in

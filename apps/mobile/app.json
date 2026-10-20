@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "Avolab Hub", "slug": "avolab-hub", "version": "0.1.0", "scheme": "avolabhub",
+    "orientation": "portrait", "icon": "./assets/icon.png", "userInterfaceStyle": "dark",
+    "ios": {"supportsTablet": true, "bundleIdentifier": "ca.avolab.hub"},
+    "android": {"package": "ca.avolab.hub", "versionCode": 1, "adaptiveIcon": {"foregroundImage": "./assets/adaptive-icon.png", "backgroundColor": "#0a0a0f"}, "permissions": [], "blockedPermissions": ["android.permission.RECORD_AUDIO", "android.permission.SYSTEM_ALERT_WINDOW", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE"]},
+    "plugins": ["expo-font"], "splash": {"image": "./assets/icon.png", "resizeMode": "contain", "backgroundColor": "#0a0a0f"}
+  }
+}
