@@ -53,6 +53,55 @@ body {
   color: #0a0f0a;
 }
 
+/* browser surfaces, themed — these ship with defaults otherwise */
+html {
+  scrollbar-color: #1e2a22 var(--color-void);
+  scrollbar-width: thin;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: #1e2a22;
+  border-radius: 8px;
+  border: 2px solid var(--color-void);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2b3d30;
+}
+input,
+textarea,
+[contenteditable] {
+  caret-color: var(--color-avo);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-avo);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 16px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: var(--color-avo);
+  color: #0b100b;
+  font-weight: 600;
+  font-size: 14px;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 16px;
+}
+
 section[id] {
   scroll-margin-top: 96px;
 }
@@ -81,13 +130,6 @@ section[id] {
   background: rgba(13, 18, 14, 0.66);
   backdrop-filter: blur(18px) saturate(1.3);
   -webkit-backdrop-filter: blur(18px) saturate(1.3);
-}
-
-.text-gradient-avo {
-  background: linear-gradient(100deg, #d8ff8a 0%, #b4f24e 45%, #6fc22b 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 /* mouse-follow spotlight for cards */
@@ -119,7 +161,9 @@ section[id] {
   .animate-marquee,
   .animate-marquee-slow,
   .animate-float,
-  .animate-spin-slow {
+  .animate-spin-slow,
+  .animate-pulse-dot,
+  .animate-shine {
     animation: none !important;
   }
 }

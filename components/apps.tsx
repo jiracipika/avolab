@@ -1,14 +1,23 @@
 "use client"
 
 import Image from "next/image"
+import { Orbit, Printer, Siren, Zap, type LucideIcon } from "lucide-react"
 import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring } from "motion/react"
 import { useRef, type MouseEvent } from "react"
 import { apps, type AppItem } from "@/lib/apps"
 import { Reveal, SectionHead } from "./reveal"
 
+const POSTER_ICONS: Record<string, LucideIcon> = {
+  siren: Siren,
+  zap: Zap,
+  orbit: Orbit,
+  printer: Printer,
+}
+
 function TiltCard({ app, index }: { app: AppItem; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const reduce = useReducedMotion()
+  const PosterIcon = app.poster ? (POSTER_ICONS[app.poster.icon] ?? Printer) : Printer
   const rx = useMotionValue(0)
   const ry = useMotionValue(0)
   const srx = useSpring(rx, { stiffness: 200, damping: 20 })
@@ -65,7 +74,7 @@ function TiltCard({ app, index }: { app: AppItem; index: number }) {
                 style={{ background: `linear-gradient(135deg, ${app.poster!.from}26, ${app.poster!.to}4d), #0d120e` }}
               >
                 <span className="absolute inset-0 bg-[radial-gradient(closest-side,rgba(255,255,255,0.06),transparent)]" />
-                <span className="text-7xl drop-shadow-[0_10px_30px_rgba(0,0,0,0.6)]">{app.poster!.glyph}</span>
+                <PosterIcon className="h-14 w-14" strokeWidth={1.5} style={{ color: app.poster!.from, filter: "drop-shadow(0 10px 30px rgba(0,0,0,0.6))" }} />
                 <span
                   className="absolute bottom-4 left-5 font-display text-2xl font-bold uppercase italic tracking-tight"
                   style={{ color: app.poster!.from, textShadow: "0 2px 18px rgba(0,0,0,0.7)" }}
@@ -75,7 +84,7 @@ function TiltCard({ app, index }: { app: AppItem; index: number }) {
               </div>
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-panel via-transparent to-transparent opacity-80" />
-            <span className="glass absolute left-4 top-4 rounded-full border border-line px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-mist">
+            <span className="absolute left-4 top-4 rounded-full border border-line bg-void/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-mist">
               {app.category}
             </span>
           </div>
@@ -121,7 +130,7 @@ function Featured() {
               <span className="animate-pulse-dot h-1.5 w-1.5 rounded-full bg-avo" />
               Playable on this page
             </span>
-            <h3 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">
+            <h3 className="font-display text-4xl font-bold tracking-[-0.04em] sm:text-5xl">
               DashVerse
             </h3>
             <p className="max-w-md leading-relaxed text-mist">
@@ -149,8 +158,7 @@ export function Apps() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-line to-transparent" />
       <div className="mx-auto max-w-6xl px-6">
         <SectionHead
-          eyebrow="Built at Avolab"
-          title={<>A shelf of <span className="text-gradient-avo">live products.</span></>}
+          title={<>A shelf of <span className="text-avo">live products.</span></>}
           copy="We don't just consult — we ship. Every product below is live, in-browser, and maintained by us. Click any card to open it."
         />
         <div className="mt-14">

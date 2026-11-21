@@ -50,9 +50,8 @@ export function Newsletter() {
             <div className="relative grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
               <div>
                 <SectionHead
-                  eyebrow="Ship Notes — our newsletter"
-                  title={<>See what we <span className="text-gradient-avo">shipped.</span></>}
-                  copy="A short, honest digest of new products, features and behind-the-scenes build notes from the Avolab lab. No spam, unsubscribe anytime."
+                  title={<>Ship Notes: see what we <span className="text-avo">shipped.</span></>}
+                  copy="A short, honest digest of new products, features and build postmortems from the Avolab lab. No spam, unsubscribe anytime."
                 />
                 <Reveal delay={0.2}>
                   <div className="mt-6 flex flex-wrap gap-2">
@@ -66,7 +65,7 @@ export function Newsletter() {
               </div>
 
               <Reveal delay={0.15}>
-                <div className="glass rounded-3xl border border-line p-6 sm:p-8">
+                <div className="rounded-3xl border border-line bg-panel/70 p-6 sm:p-8">
                   <AnimatePresence mode="wait">
                     {status === "success" ? (
                       <motion.div
@@ -120,7 +119,7 @@ export function Newsletter() {
                           disabled={status === "loading"}
                           whileTap={{ scale: 0.97 }}
                           transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                          className="group flex w-full items-center justify-center gap-2 rounded-2xl bg-avo px-6 py-3.5 font-semibold text-[#0B100B] transition-all hover:shadow-[0_0_50px_-10px_rgba(180,242,78,0.6)] disabled:cursor-wait disabled:opacity-70"
+                          className="group flex w-full items-center justify-center gap-2 rounded-2xl bg-avo px-6 py-3.5 font-semibold text-[#0B100B] transition-all hover:shadow-[0_14px_36px_-12px_rgba(180,242,78,0.45)] disabled:cursor-wait disabled:opacity-70"
                         >
                           {status === "loading" ? (
                             <motion.span

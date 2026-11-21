@@ -31,8 +31,8 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-mist">
-              Empowering people with smarter technology for a more efficient
-              future.
+              A Canadian studio that ships — twelve live products, from civic
+              tools to arcade games.
             </p>
             <a
               href="https://github.com/jiracipika"
@@ -85,7 +85,7 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-line pt-6 text-[13px] text-mist/70 sm:flex-row">
           <p>© 2026 Avolab Solutions. All rights reserved.</p>
-          <p>Built in Canada 🇨🇦 · Deployed on Vercel</p>
+          <p>Built in Canada · Deployed on Vercel</p>
         </div>
       </div>
 

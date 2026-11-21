@@ -61,7 +61,7 @@ export function Nav() {
               onClick={() => setOpen(!open)}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
-              className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-xl border border-line md:hidden"
+              className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-xl border border-line md:hidden"
             >
               <motion.span animate={{ rotate: open ? 45 : 0, y: open ? 3.5 : 0 }} className="block h-0.5 w-4 bg-cream" />
               <motion.span animate={{ rotate: open ? -45 : 0, y: open ? -3.5 : 0 }} className="block h-0.5 w-4 bg-cream" />

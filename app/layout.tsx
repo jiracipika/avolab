@@ -17,11 +17,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://avolab.ca"),
   title: {
-    default: "Avolab Solutions | Smarter Technology",
+    default: "Avolab Solutions — a studio that ships",
     template: "%s | Avolab Solutions",
   },
   description:
-    "Avolab Solutions is a technology studio empowering people with smarter technology — AI automation, workflow optimization, and a shelf of live products including DashVerse, RepFinder and Snapkeep.",
+    "Canadian studio with twelve live products — RepFinder, Snapkeep, DashVerse and more — plus AI automation and product engineering for clients. Play one before you scroll past.",
   keywords: [
     "Avolab Solutions",
     "AI automation",
@@ -35,16 +35,16 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://avolab.ca",
     siteName: "Avolab Solutions",
-    title: "Avolab Solutions | Smarter Technology",
+    title: "Avolab Solutions — a studio that ships",
     description:
-      "A technology studio shipping AI automation, custom web apps and a shelf of live products. Empowering people with smarter technology.",
+      "A Canadian studio shipping civic tools, privacy-first apps and arcade games. Twelve products live right now — one playable on the page.",
     images: [{ url: "/og.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Avolab Solutions | Smarter Technology",
+    title: "Avolab Solutions — a studio that ships",
     description:
-      "A technology studio shipping AI automation, custom web apps and a shelf of live products.",
+      "A Canadian studio shipping civic tools, privacy-first apps and arcade games.",
   },
 }
 
@@ -63,6 +63,7 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-void text-cream">
+        <a href="#main" className="skip-link">Skip to content</a>
         <MotionProvider>
           <Script
             async

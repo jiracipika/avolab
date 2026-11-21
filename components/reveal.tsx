@@ -27,38 +27,52 @@ export function Reveal({ children, delay = 0, y = 28, className, once = true }: 
 }
 
 export function SectionHead({
-  eyebrow,
   title,
   copy,
   align = "left",
 }: {
-  eyebrow: string
   title: ReactNode
   copy?: string
   align?: "left" | "center"
 }) {
+  const reduce = useReducedMotion()
   return (
-    <div className={align === "center" ? "text-center" : "text-left"}>
-      <Reveal>
-        <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-avo"
-           style={{ justifyContent: align === "center" ? "center" : "flex-start" }}>
-          <span className="inline-block h-px w-8 bg-avo/70" aria-hidden="true" />
-          {eyebrow}
-          {align === "center" && <span className="inline-block h-px w-8 bg-avo/70" aria-hidden="true" />}
-        </p>
-      </Reveal>
-      <Reveal delay={0.08}>
-        <h2 className="mt-4 font-display text-4xl font-bold leading-[1.05] tracking-tight text-cream sm:text-5xl">
-          {title}
-        </h2>
-      </Reveal>
+    <motion.div
+      className={align === "center" ? "text-center" : "text-left"}
+      initial={reduce ? false : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, margin: "-70px" }}
+    >
+      <motion.h2
+        variants={{
+          hidden: { clipPath: "inset(0 0 100% 0)", y: 22, opacity: 0 },
+          visible: {
+            clipPath: "inset(0 0 -12% 0)",
+            y: 0,
+            opacity: 1,
+            transition: { duration: 0.7, ease: [0.22, 0.68, 0.22, 1] },
+          },
+        }}
+        className="font-display text-4xl font-bold leading-[1.05] tracking-[-0.04em] text-cream sm:text-5xl"
+      >
+        {title}
+      </motion.h2>
       {copy && (
-        <Reveal delay={0.16}>
-          <p className={`mt-5 max-w-2xl text-lg leading-relaxed text-mist ${align === "center" ? "mx-auto" : ""}`}>
-            {copy}
-          </p>
-        </Reveal>
+        <motion.p
+          variants={{
+            hidden: { opacity: 0, y: 20, filter: "blur(6px)" },
+            visible: {
+              opacity: 1,
+              y: 0,
+              filter: "blur(0px)",
+              transition: { duration: 0.75, delay: 0.14, ease: [0.21, 0.65, 0.25, 1] },
+            },
+          }}
+          className={`mt-5 max-w-2xl text-lg leading-relaxed text-mist ${align === "center" ? "mx-auto" : ""}`}
+        >
+          {copy}
+        </motion.p>
       )}
-    </div>
+    </motion.div>
   )
 }

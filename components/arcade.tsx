@@ -13,9 +13,8 @@ export function Arcade() {
       <div className="pointer-events-none absolute left-1/2 top-24 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(168,85,247,0.10),transparent)] blur-3xl" aria-hidden="true" />
       <div className="relative mx-auto max-w-6xl px-6">
         <SectionHead
-          eyebrow="The Avolab Arcade"
-          title={<>Don’t take our word for it. <span className="text-gradient-avo">Play.</span></>}
-          copy="DashVerse, our infinite side-scroller, running live below the fold. Desktop: A/D or arrows to move, Space to jump. Touch: tap to jump, swipe down to slide."
+          title={<>Don’t take our word for it. <span className="text-avo">Play.</span></>}
+          copy="DashVerse, our infinite side-scroller, running live in the Avolab Arcade below. Desktop: A/D or arrows to move, Space to jump. Touch: tap to jump, swipe down to slide."
         />
 
         <Reveal delay={0.1}>

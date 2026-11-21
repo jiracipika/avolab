@@ -5,7 +5,7 @@ export type AppItem = {
   category: string
   url: string
   shot?: string
-  poster?: { glyph: string; from: string; to: string }
+  poster?: { icon: "siren" | "zap" | "orbit" | "printer"; from: string; to: string }
   accent?: string
 }
 
@@ -88,7 +88,7 @@ export const apps: AppItem[] = [
     tagline: "A tiny arcade about getting out in time — per-layout personal bests, ghost pacing.",
     category: "Game",
     url: "https://friday-evacuation.vercel.app",
-    poster: { glyph: "🧯", from: "#1d4ed8", to: "#0ea5e9" },
+    poster: { icon: "siren", from: "#1d4ed8", to: "#0ea5e9" },
   },
   {
     slug: "breakrun",
@@ -96,7 +96,7 @@ export const apps: AppItem[] = [
     tagline: "Sunbreak Riot — a 3D combat runner where every enemy is a weapon.",
     category: "Game · 3D",
     url: "https://breakrun.vercel.app",
-    poster: { glyph: "⚡", from: "#f59e0b", to: "#dc2626" },
+    poster: { icon: "zap", from: "#f59e0b", to: "#dc2626" },
   },
   {
     slug: "soundspace",
@@ -104,7 +104,7 @@ export const apps: AppItem[] = [
     tagline: "Generative ambient soundscapes that never repeat a moment.",
     category: "Audio",
     url: "https://soundspace.vercel.app",
-    poster: { glyph: "🪐", from: "#7c3aed", to: "#2563eb" },
+    poster: { icon: "orbit", from: "#7c3aed", to: "#2563eb" },
   },
   {
     slug: "printshop-sim",
@@ -112,7 +112,7 @@ export const apps: AppItem[] = [
     tagline: "Run your own print studio — first-person, from intake to pickup shelf.",
     category: "Sim",
     url: "https://printshop-sim.vercel.app",
-    poster: { glyph: "🖨️", from: "#eab308", to: "#ea580c" },
+    poster: { icon: "printer", from: "#eab308", to: "#ea580c" },
   },
 ]
 

@@ -32,27 +32,25 @@ export function Contact() {
       />
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-avo">Contact</p>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <h2 className="mt-5 font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-7xl">
-            Ready to streamline
+          <h2 className="font-display text-5xl font-bold leading-[1.02] tracking-[-0.04em] sm:text-7xl">
+            Got a stubborn problem?
             <br />
-            <span className="text-gradient-avo">your workflow?</span>
+            <span className="text-avo">Good. We collect those.</span>
           </h2>
         </Reveal>
-        <Reveal delay={0.16}>
+        <Reveal delay={0.12}>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-mist">
-            Let’s discuss how we can use automation and AI to help you focus on
-            what really matters.
+            Tell us what’s slowing you down. We’ll answer straight — sometimes
+            it’s AI, sometimes a week of automation, sometimes a plain old web
+            app. No slide decks.
           </p>
         </Reveal>
-        <Reveal delay={0.24}>
+        <Reveal delay={0.2}>
           <div className="mt-12 flex flex-col items-center justify-center gap-8 sm:flex-row sm:gap-12">
             <Magnetic strength={0.3}>
               <a
                 href="mailto:hello@avolab.ca?subject=Project%20inquiry"
-                className="group inline-flex items-center gap-3 rounded-2xl bg-avo px-9 py-4.5 text-lg font-semibold text-[#0B100B] shadow-[0_0_60px_-12px_rgba(180,242,78,0.7)] transition-shadow hover:shadow-[0_0_80px_-10px_rgba(180,242,78,0.85)]"
+                className="group inline-flex items-center gap-3 rounded-2xl bg-avo px-9 py-4.5 text-lg font-semibold text-[#0B100B] shadow-[0_20px_56px_-18px_rgba(180,242,78,0.5)] transition-shadow hover:shadow-[0_26px_70px_-18px_rgba(180,242,78,0.65)]"
               >
                 hello@avolab.ca
                 <svg className="h-5 w-5 transition-transform group-hover:translate-x-1" viewBox="0 0 16 16" fill="none" aria-hidden="true">
