@@ -174,15 +174,9 @@
   box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.95);
   transition: transform 280ms cubic-bezier(0.22, 0.68, 0.22, 1), border-color 200ms ease, filter 280ms ease;
 }
-/* The screenshot is only enlarged on phones, where it slides inside the window
-   under the thumb; the zoom leaves room to travel without showing an edge. */
 .shelf-img {
-  will-change: transform;
-}
-@media (max-width: 639px) {
-  .shelf-img {
-    transform: scale(1.26);
-  }
+  object-fit: cover;
+  object-position: top;
 }
 .shelf-name {
   display: block;

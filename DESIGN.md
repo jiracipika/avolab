@@ -59,7 +59,7 @@ The statement, the supporting copy and both calls to action are server-rendered 
 
 ## Components
 
-`Hero` (static statement + `Shelf`), `Shelf` (the product bench: scrolling snap-row on phones with touch-linked parallax inside each window; symmetric depth-of-field bench on wider screens), `SectionHead` (wipe-in heading), `Reveal` (blur+y), `Magnetic`, `TiltCard` + `.spotlight`, `Counter` (tabular, inline in prose), arcade poster→iframe swap, newsletter form states (loading/success/error), rotating badge, giant footer wordmark (18vw, white 3.5%).
+`Hero` (static statement + `Shelf`), `Shelf` (the product bench: a snap-scrolling row on phones with whole, uncropped screenshots; a symmetric depth-of-field bench with pointer parallax on wider screens), `SectionHead` (wipe-in heading), `Reveal` (blur+y), `Magnetic`, `TiltCard` + `.spotlight`, `Counter` (tabular, inline in prose), arcade poster→iframe swap, newsletter form states (loading/success/error), rotating badge, giant footer wordmark (18vw, white 3.5%).
 
 ## Browser surfaces (themed, not default)
 

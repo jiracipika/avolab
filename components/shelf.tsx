@@ -1,8 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import { motion, useMotionValue, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react"
-import { useEffect, useRef, useSyncExternalStore } from "react"
+import { motion, useMotionValue, useReducedMotion, useTransform, type MotionValue } from "motion/react"
+import { useSyncExternalStore } from "react"
 import { apps, type AppItem } from "@/lib/apps"
 
 /**
@@ -10,6 +10,11 @@ import { apps, type AppItem } from "@/lib/apps"
  * two flagships in focus at the centre and the rest receding into blur.
  * Blur is the depth cue, so every layer's motion agrees with it — nearer
  * windows travel further under the pointer than far ones.
+ *
+ * On phones the bench is a plain snap-scrolling row: the screenshots are shown
+ * whole and sharp. (An earlier version zoomed them to slide inside their
+ * frames under the thumb; the zoom cut words off at the edges, which read as
+ * broken, for a slide too small to notice.)
  */
 
 // Document order is importance order: the two flagships lead. That is the
@@ -125,45 +130,15 @@ export function Shelf({
 }) {
   const reduce = useReducedMotion()
   const scrolling = useMediaQuery("(max-width: 639px)")
-  const scroller = useRef<HTMLDivElement>(null)
-  const zero = useMotionValue(0)
+  const zero = useMotionValue(0) // stands in for every motion source when motion is reduced
 
   // The whole bench tilts back and falls out of focus as the visitor passes it.
   const tilt = useTransform(progress, [0, 1], [0, 15])
   const lift = useTransform(progress, [0, 1], [0, 34])
   const dim = useTransform(progress, [0, 0.6], [1, 0])
 
-  useEffect(() => {
-    const el = scroller.current
-    if (!scrolling || !el || reduce) return
-    // Touch-linked parallax: each screenshot slides inside its window as the
-    // shelf is dragged, like scenery seen through a train window.
-    const shots = Array.from(el.querySelectorAll<HTMLElement>(".shelf-img"))
-    let raf = 0
-    const update = () => {
-      raf = 0
-      const mid = el.getBoundingClientRect().left + el.clientWidth / 2
-      for (const shot of shots) {
-        const box = shot.parentElement?.getBoundingClientRect()
-        if (!box) continue
-        const off = Math.max(-1, Math.min(1, (box.left + box.width / 2 - mid) / el.clientWidth))
-        shot.style.transform = `translateX(${(off * -18).toFixed(2)}px) scale(1.26)`
-      }
-    }
-    const schedule = () => {
-      if (!raf) raf = requestAnimationFrame(update)
-    }
-    el.addEventListener("scroll", schedule, { passive: true })
-    update()
-    return () => {
-      el.removeEventListener("scroll", schedule)
-      if (raf) cancelAnimationFrame(raf)
-    }
-  }, [scrolling, reduce])
-
   return (
     <motion.div
-      ref={scroller}
       className="shelf"
       aria-label="Live products"
       style={
