@@ -11,18 +11,241 @@
   --color-mist: #96a296;
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --animate-marquee: marquee 42s linear infinite;
-  --animate-marquee-slow: marquee 64s linear infinite;
   --animate-spin-slow: spin 14s linear infinite;
   --animate-float: float 9s ease-in-out infinite;
   --animate-pulse-dot: pulse-dot 2.2s ease-in-out infinite;
   --animate-shine: shine 2.8s linear infinite;
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+/* ---------- hero ---------- */
+
+/* Sized against viewport height too, so the statement and the shelf share the
+   first screen on short laptops as well as tall displays. */
+.hero-title {
+  font-size: clamp(2.6rem, 13.5vw, 4rem);
+  line-height: 1.02;
 }
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: clamp(3.5rem, min(9vw, 12.2vh), 6rem);
+    line-height: 0.98;
+  }
+}
+
+.hero-copy {
+  padding-top: clamp(96px, 15.5vh, 128px);
+  padding-bottom: 8px;
+}
+
+/* Short screens (laptops at 768px tall and under): tighten the rhythm so the
+   shelf is never sliced by the fold. */
+@media (min-width: 768px) and (max-height: 800px) {
+  .hero-title {
+    font-size: clamp(3.5rem, min(9vw, 11.4vh), 6rem);
+  }
+  .hero-copy {
+    padding-top: clamp(88px, 13vh, 112px);
+    padding-bottom: 4px;
+  }
+  .hero-copy .hero-title {
+    margin-top: 20px;
+  }
+  .shelf {
+    padding-bottom: 4px;
+  }
+  .shelf-row {
+    padding-top: 12px;
+    padding-bottom: 16px;
+  }
+}
+@media (min-width: 768px) and (max-height: 740px) {
+  .hero-copy {
+    padding-top: 80px;
+    padding-bottom: 0;
+  }
+  .shelf-row {
+    padding-bottom: 12px;
+  }
+}
+
+/* Phones wide enough to pair the two calls to action: equal halves, so both
+   are wide targets instead of wrapping onto separate rows. Below this width
+   the pair would not fit beside each other and they stack instead. */
+@media (min-width: 380px) and (max-width: 639px) {
+  .hero-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+  .hero-actions > div > a {
+    width: 100%;
+    justify-content: center;
+    padding-inline: 10px;
+  }
+}
+
+/* Block-level flex, so both calls to action sit on the same line: as inline
+   boxes they aligned to different baselines (icon first vs. text first). */
+.hero-actions a {
+  display: flex;
+}
+.hero-actions a > svg {
+  flex-shrink: 0;
+}
+
+/* Control hints follow what the visitor is holding, not the screen width. */
+.controls-touch {
+  display: none;
+}
+@media (hover: none) and (pointer: coarse) {
+  .controls-pointer {
+    display: none;
+  }
+  .controls-touch {
+    display: inline;
+  }
+}
+
+/* Named products inside prose are the evidence, so they are links. */
+.product-link {
+  color: var(--color-cream);
+  text-decoration: underline;
+  text-decoration-color: rgba(180, 242, 78, 0.45);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color 200ms ease, text-decoration-color 200ms ease;
+}
+.product-link:hover {
+  color: var(--color-avo);
+  text-decoration-color: var(--color-avo);
+}
+
+/* Ambient light: one blob drifts slowly through neighbouring hues. The lime
+   brand light is left alone; only the off-brand blue wanders. */
+.blob-hue {
+  animation: hue-drift 22s ease-in-out infinite alternate;
+}
+@keyframes hue-drift {
+  from { filter: blur(64px) hue-rotate(0deg); }
+  to { filter: blur(64px) hue-rotate(52deg); }
+}
+
+/* ---------- the shelf ---------- */
+
+/* Phones: a native, snap-scrolling row. The mask fades the windows at the
+   screen edges, which is also the cue that the shelf continues. */
+.shelf {
+  position: relative;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 20px;
+  -webkit-overflow-scrolling: touch;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 28px, #000 calc(100% - 28px), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 28px, #000 calc(100% - 28px), transparent);
+}
+.shelf::-webkit-scrollbar {
+  display: none;
+}
+.shelf-row {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  padding: 12px 20px 22px;
+}
+.shelf-window {
+  --d: 0; /* distance from the centre pair: 0.5 near, 3.5 far */
+  --pos: 0; /* place on the wide bench; ignored on phones */
+  flex: 0 0 150px;
+  display: block;
+  scroll-snap-align: start;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.shelf-frame {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(242, 245, 238, 0.16);
+  background: var(--color-panel);
+  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.95);
+  transition: transform 280ms cubic-bezier(0.22, 0.68, 0.22, 1), border-color 200ms ease, filter 280ms ease;
+}
+/* The screenshot is only enlarged on phones, where it slides inside the window
+   under the thumb; the zoom leaves room to travel without showing an edge. */
+.shelf-img {
+  will-change: transform;
+}
+@media (max-width: 639px) {
+  .shelf-img {
+    transform: scale(1.26);
+  }
+}
+.shelf-name {
+  display: block;
+  margin-top: 8px;
+  overflow: hidden;
+  color: var(--color-mist);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 16px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+/* Wider screens: a bench that runs past both edges. Depth is carried by three
+   cues that agree — blur, size and light falloff — so the centre pair reads as
+   nearest and in focus without a single labelled "depth" anywhere. */
+@media (min-width: 640px) {
+  .shelf {
+    display: grid;
+    justify-content: center;
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+    padding-bottom: 12px;
+  }
+  .shelf-row {
+    gap: 16px;
+    padding: 16px 0 0;
+  }
+  .shelf-window {
+    --blur: calc(var(--d) * 1.7px);
+    --light: calc(1 - var(--d) * 0.13);
+    order: var(--pos); /* the symmetric bench; document order stays importance order */
+    flex-basis: clamp(180px, 13.8vw, 232px);
+    margin-top: calc(var(--d) * var(--d) * 3.5px);
+    scale: calc(1 - var(--d) * 0.04);
+  }
+  .shelf-frame {
+    border-radius: 14px;
+    filter: blur(var(--blur)) brightness(var(--light));
+  }
+}
+
+/* Pointer devices: the hovered window comes forward into focus. The link
+   itself stays put; only its frame moves. */
+@media (hover: hover) and (pointer: fine) {
+  .shelf-window:hover .shelf-frame,
+  .shelf-window:focus-visible .shelf-frame {
+    --blur: 0px;
+    --light: 1;
+    border-color: rgba(180, 242, 78, 0.6);
+    transform: translateY(-5px) scale(1.04);
+  }
+  .shelf-window:hover .shelf-name,
+  .shelf-window:focus-visible .shelf-name {
+    color: var(--color-avo);
+  }
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-14px) rotate(1.5deg); }
@@ -117,15 +340,6 @@ section[id] {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.34'/%3E%3C/svg%3E");
 }
 
-/* fine grid, fading out radially */
-.blueprint {
-  background-image:
-    linear-gradient(rgba(242, 245, 238, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(242, 245, 238, 0.045) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(ellipse 90% 70% at 50% 38%, black 25%, transparent 78%);
-}
-
 .glass {
   background: rgba(13, 18, 14, 0.66);
   backdrop-filter: blur(18px) saturate(1.3);
@@ -158,8 +372,7 @@ section[id] {
   html {
     scroll-behavior: auto;
   }
-  .animate-marquee,
-  .animate-marquee-slow,
+  .blob-hue,
   .animate-float,
   .animate-spin-slow,
   .animate-pulse-dot,

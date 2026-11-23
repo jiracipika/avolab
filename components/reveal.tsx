@@ -32,7 +32,7 @@ export function SectionHead({
   align = "left",
 }: {
   title: ReactNode
-  copy?: string
+  copy?: ReactNode
   align?: "left" | "center"
 }) {
   const reduce = useReducedMotion()

@@ -9,12 +9,19 @@ export function Arcade() {
   const [playing, setPlaying] = useState(false)
 
   return (
-    <section id="arcade" className="relative py-28 sm:py-32">
+    <section id="arcade" className="relative overflow-hidden py-28 sm:py-32">
       <div className="pointer-events-none absolute left-1/2 top-24 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(168,85,247,0.10),transparent)] blur-3xl" aria-hidden="true" />
       <div className="relative mx-auto max-w-6xl px-6">
         <SectionHead
           title={<>Don’t take our word for it. <span className="text-avo">Play.</span></>}
-          copy="DashVerse, our infinite side-scroller, running live in the Avolab Arcade below. Desktop: A/D or arrows to move, Space to jump. Touch: tap to jump, swipe down to slide."
+          copy={
+            <>
+              DashVerse, our infinite side-scroller, running live in the Avolab Arcade below.{" "}
+              {/* Controls follow what the visitor is holding, not the screen width. */}
+              <span className="controls-pointer">A/D or arrow keys to move, Space to jump.</span>
+              <span className="controls-touch">Tap to jump, swipe down to slide.</span>
+            </>
+          }
         />
 
         <Reveal delay={0.1}>

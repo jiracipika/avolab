@@ -115,5 +115,3 @@ export const apps: AppItem[] = [
     poster: { icon: "printer", from: "#eab308", to: "#ea580c" },
   },
 ]
-
-export const marqueeApps = apps.map((a) => a.name)
